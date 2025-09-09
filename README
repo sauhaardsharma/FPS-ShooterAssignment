@@ -1,1 +1,59 @@
-hello
+A FPS game in Unreal Engine 5.6 where interactive boxes are spawned dynamically based on online JSON data. Each box has unique attributes (color, health, score). The player can shoot and destroy these boxes, earning points.
+
+
+
+---------------LOGIC IMPLEMENTATION---------------
+
+
+JSON FETCHING & PARSING
+
+- Game fetches a JSON file from a given URL (data.json) using Unreal’s native HTTP + JSON APIs.
+- Implements error handling for HTTP failures and JSON parse errors.
+
+
+BOX SPAWNING
+
+- Each box is spawned as a simple static mesh actor.
+- Attributes (color, health, score) are applied from JSON definitions.
+- A dynamic material instance is created to apply the color field from JSON.
+
+
+DAMAGE SYSTEM
+
+- Boxes take 1 damage per hit from player bullets (using line traces).
+- Destroyed once health reaches zero.
+- Score is awarded based on JSON’s score value.
+
+
+UI SYSTEM
+
+- Shooter UI (C++ parent) created for score display.
+- The widget is instantiated in BP_MyPlayerController at BeginPlay.
+- UI updates when boxes are destroyed.
+
+
+
+---------------CHALLENGES FACED---------------
+
+
+JSON FETCHER
+
+- Initially faced issues with JSON fetching .
+- Some compilation errors were faced .
+
+
+UI UPDATION
+
+- Early attempts failed because widgets were updated without holding a proper reference.
+- Tried fixing by storing the created widget instance in BP_MyPlayerController and routing all updates through it.
+
+
+
+---------------HOW TO TEST---------------
+
+
+- Clone the Repository
+- Open in Unreal Engine 5.6
+- Run the Game
+- Verify Features
+
